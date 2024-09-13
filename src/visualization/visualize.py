@@ -5,6 +5,8 @@ import matplotlib.dates as mdates
 import statsmodels.api as sm
 import matplotlib as mpl
 import matplotlib.colors as mcolors
+from matplotlib import colors as mcolors
+colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 from sklearn.preprocessing import StandardScaler
 
 def read_preprocessed_data():
@@ -147,6 +149,7 @@ def plot_with_time_locators(data_load, decomposition_trend, save_dir):
     ax.plot(decomposition_trend.index, decomposition_trend, color=colors['midnightblue'])
 
     mpl.rcParams['figure.figsize'] = [18.0, 6.0]
+
     plot_and_save(fig, 'trend_vs_load.png', save_dir)
 
 def rescale_data(data):

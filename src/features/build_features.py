@@ -114,6 +114,36 @@ def plot_acf_pacf(data, save_dir):
     plt.show()
     logging.info("ACF and PACF plots saved to figures directory")
 
+# # Main execution
+# def main():
+#     # Step 1: Read the data
+#     logging.info("Starting data preprocessing")
+#     data = read_data(DATA_PATH)
+
+#     # Step 2: Feature engineering - Create time-related features
+#     data = create_time_features(data)
+#     logging.info("First five rows of the data after feature engineering:\n" + str(data.head()))
+
+#     # Step 3: Add rolling statistics to the 'load' column
+#     load_data = data[['load']]
+#     new_dataframe = add_rolling_statistics(load_data)
+#     logging.info("First ten rows of the data after adding rolling statistics:\n" + str(new_dataframe.head(10)))
+
+#     # Step 4: Drop the time-related features from the original dataframe if not needed
+#     data = data.drop(['hour', 'month', 'dayofWeek'], axis=1)
+#     logging.info("Dropped time-related features")
+
+#     # Step 5: Plot lag and autocorrelation for the load column
+#     plot_lag_autocorrelation(data, SAVE_DIR)
+
+#     # Step 6: Plot autocorrelation and partial autocorrelation
+#     plot_acf_pacf(data, SAVE_DIR)
+
+#     logging.info("Data preprocessing completed successfully")
+
+# if __name__ == "__main__":
+#     main()
+    
 # Main execution
 def main():
     # Step 1: Read the data
@@ -139,7 +169,13 @@ def main():
     # Step 6: Plot autocorrelation and partial autocorrelation
     plot_acf_pacf(data, SAVE_DIR)
 
+    # Save the preprocessed data for model input
+    preprocessed_save_path = os.path.join(cwd, 'data', 'interim', 'preprocessed_for_model.csv')
+    data.to_csv(preprocessed_save_path)
+    logging.info(f"Preprocessed data saved to {preprocessed_save_path}")
+
     logging.info("Data preprocessing completed successfully")
 
 if __name__ == "__main__":
     main()
+
