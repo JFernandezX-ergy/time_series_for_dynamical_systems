@@ -1,4 +1,4 @@
-time_series_analysis_for_dynamical_systems_endogenous
+time_series_analysis_for_dynamical_systems
 ==============================
 
 This is a project to predict time series without exogenous variables
